@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: papyrus-hello
+  namespace: hownee
+  labels:
+    app: papyrus-hello
+spec:
+  selector:
+    matchLabels:
+      app: papyrus-hello
+  template:
+    metadata:
+      labels:
+        app: papyrus-hello
+        tier: web
+    spec:
+      containers:
+        - name: papyrus-hello
+          image: hownee/papyrus-hello
+          ports:
+            - containerPort: 50051

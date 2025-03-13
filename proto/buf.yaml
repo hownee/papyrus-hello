@@ -1,0 +1,10 @@
+version: v1
+name: buf.build/hownee/papyrus-hello
+breaking:
+  use:
+    - FILE
+lint:
+  use:
+    - DEFAULT
+  ignore:
+    - google
