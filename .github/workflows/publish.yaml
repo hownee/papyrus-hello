@@ -37,11 +37,12 @@ jobs:
       - name: Build and publish Docker image
         uses: docker/build-push-action@v2
         with:
-          context: ./deploy/production
-          push: true
+          context: .
+          file: deploy/production/Dockerfile
           tags: |
             ghcr.io/${{ steps.lowercase.outputs.ORG_NAME }}/${{ steps.lowercase.outputs.REPO_NAME }}:latest
             ghcr.io/${{ steps.lowercase.outputs.ORG_NAME }}/${{ steps.lowercase.outputs.REPO_NAME }}:${{ github.sha }}
+          push: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
 

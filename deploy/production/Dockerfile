@@ -1,5 +1,5 @@
 # Builder stage
-FROM node:20-alpine as builder
+FROM node:20-alpine AS builder
 
 # Set working directory
 WORKDIR /usr/src/app
@@ -21,7 +21,7 @@ RUN npm run build
 
 
 # Runner stage
-FROM node:20-alpine as runner
+FROM node:20-alpine AS runner
 
 # Set working directory
 WORKDIR /usr/src/app
