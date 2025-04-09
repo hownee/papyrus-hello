@@ -29,9 +29,7 @@ jobs:
       - name: Lowercase organization name and repository name
         id: lowercase
         run: |
-          ORG_NAME=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')
           REPO_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
-          echo "ORG_NAME=${ORG_NAME}" >> $GITHUB_OUTPUT
           echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_OUTPUT
 
       - name: Build and publish Docker image
@@ -40,8 +38,8 @@ jobs:
           context: .
           file: deploy/production/Dockerfile
           tags: |
-            ghcr.io/${{ steps.lowercase.outputs.ORG_NAME }}/${{ steps.lowercase.outputs.REPO_NAME }}:latest
-            ghcr.io/${{ steps.lowercase.outputs.ORG_NAME }}/${{ steps.lowercase.outputs.REPO_NAME }}:${{ github.sha }}
+            ghcr.io/${{ steps.lowercase.outputs.REPO_NAME }}:latest
+            ghcr.io/${{ steps.lowercase.outputs.REPO_NAME }}:${{ github.sha }}
           push: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
