@@ -1,0 +1,63 @@
+name: Build and publish package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and publish package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Lowercase organization name and repository name
+        id: lowercase
+        run: |
+          ORG_NAME=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')
+          REPO_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
+          echo "ORG_NAME=${ORG_NAME}" >> $GITHUB_OUTPUT
+          echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_OUTPUT
+
+      - name: Build and publish Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: ./deploy/production
+          push: true
+          tags: |
+            ghcr.io/${{ steps.lowercase.outputs.ORG_NAME }}/${{ steps.lowercase.outputs.REPO_NAME }}:latest
+            ghcr.io/${{ steps.lowercase.outputs.ORG_NAME }}/${{ steps.lowercase.outputs.REPO_NAME }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  buf:
+    name: Generate and push protobuf files to the Buf registry
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Buf CI
+        uses: bufbuild/buf-action@v1
+        with:
+          token: ${{ secrets.BUF_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          lint: false
+          format: false
+          push: true
+        
