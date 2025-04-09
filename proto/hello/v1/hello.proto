@@ -10,10 +10,6 @@ message SayHelloResponse {
   string message = 1;
 }
 
-message Test {
-  string name = 1;
-}
-
 service HelloService {
   rpc SayHello(SayHelloRequest) returns (SayHelloResponse) {}
 }
