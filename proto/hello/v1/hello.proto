@@ -1,4 +1,4 @@
-syntax="proto3";
+syntax = "proto3";
 
 package hello.v1;
 
@@ -8,6 +8,10 @@ message SayHelloRequest {
 
 message SayHelloResponse {
   string message = 1;
+}
+
+message Test {
+  string name = 1;
 }
 
 service HelloService {
