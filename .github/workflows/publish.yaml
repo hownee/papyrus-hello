@@ -45,7 +45,7 @@ jobs:
           cache-to: type=gha,mode=max
 
   buf:
-    name: Generate and push protobuf files to the Buf registry
+    name: Generate and push protobuf files to the BSR
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -53,5 +53,6 @@ jobs:
       - uses: bufbuild/buf-push-action@v1
         with:
           buf_token: ${{ secrets.BUF_TOKEN }}
+          input: proto
           create_visibility: public
           draft: false
