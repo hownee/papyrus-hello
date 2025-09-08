@@ -1,0 +1,20 @@
+{
+    "name": "test-remote-module",
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite --port 4173 --host",
+        "build": "vite build",
+        "preview": "vite preview --port 4173 --host"
+    },
+    "dependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@module-federation/vite": "^1.0.1",
+        "@vitejs/plugin-react": "^4.0.3",
+        "prettier": "3.6.2",
+        "vite": "^4.4.5"
+    }
+}
