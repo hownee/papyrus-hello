@@ -1,0 +1,22 @@
+# Propriétaire principal de tous les fichiers
+* @alexandredfm
+
+# YAML, Docker, Swift, Go → @neeptossss
+*.yaml @neeptossss
+*.yml @neeptossss
+Dockerfile* @neeptossss
+*.swift @neeptossss
+*.go @neeptossss
+
+# MDX, Shell, JSX, TSX, Rust → @alexandredfm
+*.mdx @alexandredfm
+*.sh @alexandredfm
+*.jsx @alexandredfm
+*.tsx @alexandredfm
+*.rs @alexandredfm
+
+# HTML, JS, TS, Vue → @leynaLahouri
+*.html @leynaLahouri
+*.js @leynaLahouri
+*.ts @leynaLahouri
+*.vue @leynaLahouri
