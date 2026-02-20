@@ -4,11 +4,11 @@
 
 ## Type de changement
 
-- [ ] 🐛 Bug fix (`fix:`)
-- [ ] ✨ Nouvelle fonctionnalité (`feat:`)
-- [ ] 🔧 Maintenance (`chore:`)
-- [ ] 📝 Documentation (`docs:`)
-- [ ] ♻️ Refactoring (`refactor:`)
+- [ ] Bug fix (`fix:`)
+- [ ] Nouvelle fonctionnalité (`feat:`)
+- [ ] Maintenance (`chore:`)
+- [ ] Documentation (`docs:`)
+- [ ] Refactoring (`refactor:`)
 
 ## Checklist
 
